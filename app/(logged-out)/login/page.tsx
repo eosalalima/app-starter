@@ -77,7 +77,7 @@ export default function Login() {
                     message: response.message,
                 });
             } else {
-                router.push("/my-account");
+                router.push("/home");
             }
         }
     };
@@ -97,7 +97,7 @@ export default function Login() {
             toast.error(response.message);
             return;
         } else {
-            router.push("/my-account");
+            router.push("/home");
         }
     };
 

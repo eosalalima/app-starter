@@ -5,6 +5,7 @@ import TwoFactorAuthForm from "./two-factor-auth-form";
 import { users } from "@/db/schema";
 import { eq } from "drizzle-orm";
 import db from "@/db/drizzle";
+import { Button } from "@/components/ui/button";
 
 export default async function MyAccount() {
     const session = await auth();
@@ -30,6 +31,13 @@ export default async function MyAccount() {
                 <TwoFactorAuthForm
                     twoFactorActivated={user?.twoFactorAuthActivated ?? false}
                 />
+                <Button
+                    className="mt-2 hover:bg-secondary-foreground/10"
+                    variant="secondary"
+                    asChild
+                >
+                    <a href="/change-password">Change Password</a>
+                </Button>
             </CardContent>
         </Card>
     );
