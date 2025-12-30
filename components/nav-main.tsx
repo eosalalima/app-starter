@@ -46,6 +46,7 @@ export function NavMain({
                     </SidebarMenuItem>
                 </SidebarMenu>
                 <SidebarMenu>
+
                     {items.map((item) => {
                         const isActive =
                             pathname === item.url || pathname.startsWith(`${item.url}/`);
@@ -65,6 +66,7 @@ export function NavMain({
                             </SidebarMenuItem>
                         );
                     })}
+
                 </SidebarMenu>
             </SidebarGroupContent>
         </SidebarGroup>
