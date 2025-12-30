@@ -37,7 +37,7 @@ export function NavMain({
                         </SidebarMenuButton>
                         <Button
                             size="icon"
-                            className="size-8 group-data-[collapsible=icon]:opacity-0"
+                            className="size-8 group-data-[collapsible=icon]:opacity-0 border-gray-200"
                             variant="outline"
                         >
                             <IconMail />
@@ -46,10 +46,10 @@ export function NavMain({
                     </SidebarMenuItem>
                 </SidebarMenu>
                 <SidebarMenu>
-
                     {items.map((item) => {
                         const isActive =
-                            pathname === item.url || pathname.startsWith(`${item.url}/`);
+                            pathname === item.url ||
+                            pathname.startsWith(`${item.url}/`);
 
                         return (
                             <SidebarMenuItem key={item.title}>
@@ -57,8 +57,14 @@ export function NavMain({
                                     tooltip={item.title}
                                     asChild
                                     isActive={isActive}
+                                    className="rounded-md data-[active=true]:bg-slate-900 data-[active=true]:text-white data-[active=true]:shadow-sm         data-[active=true]:[&>svg]:text-white hover:bg-slate-300 dark:data-[active=true]:bg-primary dark:data-[active=true]:text-primary-foreground dark:hover:bg-slate-800/80"
                                 >
-                                    <a href={item.url} aria-current={isActive ? "page" : undefined}>
+                                    <a
+                                        href={item.url}
+                                        aria-current={
+                                            isActive ? "page" : undefined
+                                        }
+                                    >
                                         {item.icon && <item.icon />}
                                         <span>{item.title}</span>
                                     </a>
@@ -66,7 +72,6 @@ export function NavMain({
                             </SidebarMenuItem>
                         );
                     })}
-
                 </SidebarMenu>
             </SidebarGroupContent>
         </SidebarGroup>

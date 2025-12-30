@@ -24,62 +24,75 @@ import {
     SidebarMenuItem,
     useSidebar,
 } from "@/components/ui/sidebar";
+import { usePathname } from "next/navigation";
 
 export function NavDocuments({
     items,
 }: {
     items: {
-        name: string;
+        title: string;
         url: string;
         icon: Icon;
     }[];
 }) {
     const { isMobile } = useSidebar();
+    const pathname = usePathname();
 
     return (
         <SidebarGroup className="group-data-[collapsible=icon]:hidden">
             <SidebarGroupLabel>Documents</SidebarGroupLabel>
             <SidebarMenu>
-                {items.map((item) => (
-                    <SidebarMenuItem key={item.name}>
-                        <SidebarMenuButton asChild>
-                            <a href={item.url}>
-                                <item.icon />
-                                <span>{item.name}</span>
-                            </a>
-                        </SidebarMenuButton>
-                        <DropdownMenu>
-                            <DropdownMenuTrigger asChild>
-                                <SidebarMenuAction
-                                    showOnHover
-                                    className="data-[state=open]:bg-accent rounded-sm"
-                                >
-                                    <IconDots />
-                                    <span className="sr-only">More</span>
-                                </SidebarMenuAction>
-                            </DropdownMenuTrigger>
-                            <DropdownMenuContent
-                                className="w-24 rounded-lg"
-                                side={isMobile ? "bottom" : "right"}
-                                align={isMobile ? "end" : "start"}
+                {items.map((item) => {
+                    const isActive =
+                        pathname === item.url ||
+                        pathname.startsWith(`${item.url}/`);
+
+                    return (
+                        <SidebarMenuItem key={item.title}>
+                            <SidebarMenuButton
+                                tooltip={item.title}
+                                asChild
+                                isActive={isActive}
+                                className="rounded-md data-[active=true]:bg-slate-900 data-[active=true]:text-white data-[active=true]:shadow-sm data-[active=true]:[&>svg]:text-white hover:bg-slate-300 dark:hover:bg-slate-800/60"
                             >
-                                <DropdownMenuItem>
-                                    <IconFolder />
-                                    <span>Open</span>
-                                </DropdownMenuItem>
-                                <DropdownMenuItem>
-                                    <IconShare3 />
-                                    <span>Share</span>
-                                </DropdownMenuItem>
-                                <DropdownMenuSeparator />
-                                <DropdownMenuItem variant="destructive">
-                                    <IconTrash />
-                                    <span>Delete</span>
-                                </DropdownMenuItem>
-                            </DropdownMenuContent>
-                        </DropdownMenu>
-                    </SidebarMenuItem>
-                ))}
+                                <a href={item.url}>
+                                    <item.icon />
+                                    <span>{item.title}</span>
+                                </a>
+                            </SidebarMenuButton>
+                            <DropdownMenu>
+                                <DropdownMenuTrigger asChild>
+                                    <SidebarMenuAction
+                                        showOnHover
+                                        className="data-[state=open]:bg-accent rounded-sm"
+                                    >
+                                        <IconDots />
+                                        <span className="sr-only">More</span>
+                                    </SidebarMenuAction>
+                                </DropdownMenuTrigger>
+                                <DropdownMenuContent
+                                    className="w-24 rounded-lg border-gray-200"
+                                    side={isMobile ? "bottom" : "right"}
+                                    align={isMobile ? "end" : "start"}
+                                >
+                                    <DropdownMenuItem>
+                                        <IconFolder />
+                                        <span>Open</span>
+                                    </DropdownMenuItem>
+                                    <DropdownMenuItem>
+                                        <IconShare3 />
+                                        <span>Share</span>
+                                    </DropdownMenuItem>
+                                    <DropdownMenuSeparator />
+                                    <DropdownMenuItem variant="destructive">
+                                        <IconTrash />
+                                        <span>Delete</span>
+                                    </DropdownMenuItem>
+                                </DropdownMenuContent>
+                            </DropdownMenu>
+                        </SidebarMenuItem>
+                    );
+                })}
                 <SidebarMenuItem>
                     <SidebarMenuButton className="text-sidebar-foreground/70">
                         <IconDots className="text-sidebar-foreground/70" />

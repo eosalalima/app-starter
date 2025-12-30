@@ -19,7 +19,7 @@ export default async function MyAccount() {
         .execute();
 
     return (
-        <Card className="w-[350px]">
+        <Card className="w-[350px] border-gray-200">
             <CardHeader>
                 <CardTitle>My Account</CardTitle>
             </CardHeader>

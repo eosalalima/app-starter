@@ -44,7 +44,7 @@ export function NavUser({
                     <DropdownMenuTrigger asChild>
                         <SidebarMenuButton
                             size="lg"
-                            className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
+                            className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground hover:bg-slate-300 dark:hover:bg-slate-800/60"
                         >
                             <Avatar className="h-8 w-8 rounded-lg grayscale">
                                 <AvatarImage
@@ -67,7 +67,7 @@ export function NavUser({
                         </SidebarMenuButton>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent
-                        className="w-(--radix-dropdown-menu-trigger-width) min-w-56 rounded-lg"
+                        className="w-(--radix-dropdown-menu-trigger-width) min-w-56 rounded-lg border-gray-200"
                         side={isMobile ? "bottom" : "right"}
                         align="end"
                         sideOffset={4}
@@ -95,7 +95,10 @@ export function NavUser({
                         </DropdownMenuLabel>
                         <DropdownMenuSeparator />
                         <DropdownMenuGroup>
-                            <DropdownMenuItem asChild>
+                            <DropdownMenuItem
+                                asChild
+                                className="hover:bg-slate-300 dark:hover:bg-slate-800/60"
+                            >
                                 <a
                                     href="/my-account"
                                     className="flex items-center gap-2"
@@ -104,11 +107,11 @@ export function NavUser({
                                     Account
                                 </a>
                             </DropdownMenuItem>
-                            <DropdownMenuItem>
+                            <DropdownMenuItem className="hover:bg-slate-300 dark:hover:bg-slate-800/60">
                                 <IconCreditCard />
                                 Billing
                             </DropdownMenuItem>
-                            <DropdownMenuItem>
+                            <DropdownMenuItem className="hover:bg-slate-300 dark:hover:bg-slate-800/60">
                                 <IconNotification />
                                 Notifications
                             </DropdownMenuItem>
